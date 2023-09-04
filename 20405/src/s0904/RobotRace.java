@@ -28,8 +28,6 @@ public class RobotRace {
 		//Thread를 상속받은 클래스의 객체 시작
 		a.start();//쓰레드 실행 시작
 		b.start();
-		c.start();
-		
-		
+		c.start();		
 	}
 }
