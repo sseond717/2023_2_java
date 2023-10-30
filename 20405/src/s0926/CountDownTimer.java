@@ -1,11 +1,10 @@
-package test;
+package s0926;
 
 import javax.swing.JLabel;
 
 public class CountDownTimer implements Runnable{
 	JLabel timerLabel;
-	CountDownTimer(
-			JLabel timerLabel){
+	CountDownTimer(JLabel timerLabel){
 		this.timerLabel=timerLabel;
 	}
 	@Override

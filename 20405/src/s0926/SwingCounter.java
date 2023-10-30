@@ -1,4 +1,4 @@
-package test;
+package s0926;
 
 import java.awt.*;
 import java.awt.event.*;
