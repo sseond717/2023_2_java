@@ -23,7 +23,6 @@ public class AppMain extends JFrame implements ActionListener{
 		ImageIcon image = new ImageIcon("img/cat.png");
 		JLabel lbi = new JLabel(image);
 		
-		
 		lbi.setBounds(75, 180, 150, 150);
 		lbi.setHorizontalAlignment(JLabel.CENTER);
 
@@ -38,8 +37,7 @@ public class AppMain extends JFrame implements ActionListener{
 		
 		p.add(bn);
 		
-		bn
-		.addActionListener(this);
+		bn.addActionListener(this);
 		
 		setTitle("RobotChat Login");
 		setSize(320, 600);
