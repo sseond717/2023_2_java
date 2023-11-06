@@ -49,7 +49,6 @@ public class AppMain extends JFrame implements ActionListener{
 		new AppMain();
 	}
 	
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == bn) {
