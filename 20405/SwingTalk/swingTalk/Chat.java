@@ -16,20 +16,22 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextPane;
+import javax.swing.text.html.HTMLDocument;
 
 public class Chat extends JFrame implements ActionListener {
 	JMenuBar menuBar;
 	JMenu menu;
 	JMenuItem menuItem[] = new JMenuItem[4];
 	String[] menuTitle = { "이름 변경", "배경 변경", "폰트 변경", "서버주소 변경" };
-
 	JPanel ptop, pbot;
 	JScrollPane pchat;
-
 	String userID;
 	JLabel userLabel;
 	JTextArea txtSend;
 	JButton btn_imo;
+	JTextPane chatTextPane;
+	HTMLDocument doc;
 
 	public Chat(String userID) {
 
@@ -37,9 +39,7 @@ public class Chat extends JFrame implements ActionListener {
 		setSize(320, 620);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(null);
-
 		createMenu();
-
 		setVisible(true);
 
 		ptop = new JPanel();
@@ -61,7 +61,6 @@ public class Chat extends JFrame implements ActionListener {
 		draw_top_panel();
 		draw_chat_panel();
 		draw_bottom_panel();
-
 	}
 
 	private void draw_top_panel() {
@@ -70,7 +69,6 @@ public class Chat extends JFrame implements ActionListener {
 		userLabel.setBounds(0, 0, 300, 20);
 		userLabel.setText(userID);
 		ptop.add(userLabel);
-
 	}
 
 	private void draw_chat_panel() {
@@ -80,49 +78,43 @@ public class Chat extends JFrame implements ActionListener {
 		txtSend = new JTextArea();
 		
 		txtSend.setBounds(4, 4, 200, 70);
-		
 		txtSend.setLineWrap(true);
-		btn_imo = new JButton("asdf");
+		
+		btn_imo = new JButton("¯\\_(ツ)_/¯");
 		btn_imo.setBounds(220, 4, 60, 30);
 		
 		pbot.add(txtSend);
 		pbot.add(btn_imo);
-		
 		txtSend.addKeyListener(new KeyListener(){
-
-	public void keyTyped(KeyEvent e) {
-
-	}
-
-	public void keyPressed(KeyEvent e) {
-
-	}
-
-	public void keyReleased(KeyEvent e) {
-		String str = txtSend.getText().trim();
-		if (e.getKeyCode() == KeyEvent.VK_ENTER && str.length() > 0) {
-			System.out.println(str + "을 전송합니다.  다음에 추가구현");
-		}
-	}
-
-	});
+			@Override
+			public void keyTyped(KeyEvent e) {
+		
+			}
+			@Override
+			public void keyPressed(KeyEvent e) {
+		
+			}
+			@Override
+			public void keyReleased(KeyEvent e) {
+				String str = txtSend.getText().trim();
+				if (e.getKeyCode() == KeyEvent.VK_ENTER && str.length() > 0) {
+					System.out.println(str + "을 전송합니다.  다음에 추가구현");
+				}
+			}
+		});
 	}
 
 	private void createMenu() {
 		menuBar = new JMenuBar();
 		menu = new JMenu("설정");
 		menuBar.add(menu);
-
 		menuItem = new JMenuItem[4];
-
 		for (int i = 0; i < menuItem.length; i++) {
 			menuItem[i] = new JMenuItem(menuTitle[i]);
 			menu.add(menuItem[i]);
 		}
 		setJMenuBar(menuBar);
-
 	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
