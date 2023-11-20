@@ -13,10 +13,12 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.text.html.HTMLDocument;
 
 public class Chat extends JFrame implements ActionListener {
@@ -32,7 +34,10 @@ public class Chat extends JFrame implements ActionListener {
 	JButton btn_imo;
 	JTextPane chatTextPane;
 	HTMLDocument doc;
-
+	
+	//private HTMLMaker htmlMaker = new HTMLMaker();
+	//private StringBuffer messageList = new StringBuffer();
+	
 	public Chat(String userID) {
 
 		this.userID = userID;
@@ -46,9 +51,9 @@ public class Chat extends JFrame implements ActionListener {
 		pchat = new JScrollPane();
 		pbot = new JPanel();
 
-		ptop.setBounds(0, 0, 310, 40);
-		pchat.setBounds(0, 40, 310, 480);
-		pbot.setBounds(0, 480, 310, 80);
+		ptop.setBounds(0, 0, 300, 40);
+		pchat.setBounds(0, 40, 300, 440);
+		pbot.setBounds(0, 480, 300, 80);
 
 		ptop.setBackground(Color.yellow);
 		pchat.setBackground(Color.pink);
@@ -62,7 +67,7 @@ public class Chat extends JFrame implements ActionListener {
 		draw_chat_panel();
 		draw_bottom_panel();
 	}
-
+	
 	private void draw_top_panel() {
 		userLabel = new JLabel();
 		userLabel.setFont(new Font("맑은 고딕", Font.BOLD, 16));
@@ -72,6 +77,16 @@ public class Chat extends JFrame implements ActionListener {
 	}
 
 	private void draw_chat_panel() {
+		pchat.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);;
+		
+		chatTextPane = new JTextPane();
+		chatTextPane.setBounds(0, 0, 400, 300);
+		chatTextPane.setBackground(Color.pink);
+		
+		chatTextPane.setContentType("text/html");
+		doc = (HTMLDocument) chatTextPane.getStyledDocument();
+		pchat.setViewportView(chatTextPane);
+		
 
 	}private void draw_bottom_panel() {
 		pbot.setLayout(null);
@@ -80,7 +95,7 @@ public class Chat extends JFrame implements ActionListener {
 		txtSend.setBounds(4, 4, 200, 70);
 		txtSend.setLineWrap(true);
 		
-		btn_imo = new JButton("¯\\_(ツ)_/¯");
+		btn_imo = new JButton("ϑ..");
 		btn_imo.setBounds(220, 4, 60, 30);
 		
 		pbot.add(txtSend);
@@ -111,13 +126,27 @@ public class Chat extends JFrame implements ActionListener {
 		menuItem = new JMenuItem[4];
 		for (int i = 0; i < menuItem.length; i++) {
 			menuItem[i] = new JMenuItem(menuTitle[i]);
+			menuItem[i].addActionListener(this);
 			menu.add(menuItem[i]);
 		}
 		setJMenuBar(menuBar);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getSource() == menuItem[0]) { //이름
+			userID = JOptionPane.showInputDialog("새 이름을 입력하세요");
+			if (userID.trim().length() != 0) {
+				System.out.println("이름변경: "+ userID);
+				userLabel.setText(userID);
+			}
+		}else if(e.getSource() == menuItem[1]) {//배경
+			SelectRGB rgbDlg = new SelectRGB();
+			if(rgbDlg.changeColor) chatTextPane.setBackground(rgbDlg.sample.getBackground());
+		}else if(e.getSource() == menuItem[2]) {//폰트
+			
+		}else if(e.getSource() == menuItem[3]) {//서버주소
+			
+		}
 		
 	}
 }
