@@ -59,11 +59,11 @@ public class MyInfo extends JFrame implements ListSelectionListener, ActionListe
 		scrollPane2.setBounds(220, 30, 90, 160);
 
 		//라디오 버튼 생성
-        radio_male.setBounds(320, 30, 80, 50);
-        radio_female.setBounds(320, 80, 80, 50);
-	    radio_male.setFont(defaultFont);
-	    radio_female.setFont(defaultFont);
-	    radio_male.setSelected(true);
+        	radio_male.setBounds(320, 30, 80, 50);
+        	radio_female.setBounds(320, 80, 80, 50);
+	  	radio_male.setFont(defaultFont);
+	    	radio_female.setFont(defaultFont);
+	   	radio_male.setSelected(true);
 	    
 		//라벨
 		sample.setBounds(10, 180, 500, 50);
@@ -81,8 +81,8 @@ public class MyInfo extends JFrame implements ListSelectionListener, ActionListe
 		p0.add(listYear);
 		p0.add(scrollPane1);
 		p0.add(scrollPane2);
-        p0.add(radio_male);
-        p0.add(radio_female);
+        	p0.add(radio_male);
+        	p0.add(radio_female);
 		p0.add(sample);
 		p0.add(check_agree);
 		p0.add(btnOk);
